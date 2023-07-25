@@ -1,0 +1,222 @@
+header {
+	display: block;
+	position: fixed;
+	height: 100vh;
+	z-index: 1;
+	background-color: #353535;
+	width: 100%;
+
+	.header__slider {
+		width: 100%;
+		overflow: hidden;
+		height: 100%;
+
+		.slider__tape {
+			display: flex;
+			justify-content: space-between;
+			width: 300%;
+			height: 100%;
+			-webkit-transition: margin-left .8s ease-in-out;
+			   -moz-transition: margin-left .8s ease-in-out;
+			    -ms-transition: margin-left .8s ease-in-out;
+			     -o-transition: margin-left .8s ease-in-out;
+			        transition: margin-left .8s ease-in-out;
+
+			.slider__slide {
+				width: 33.333%;
+				height: 100%;	
+
+				@for $i from 1 through 3 {
+					&.v#{$i} {
+						background-image: url("../../img/header/BG2.min.jpg");
+						background-position: center left 48%;
+					}
+				}
+
+				#content {
+					display: flex;
+					justify-content: space-around;
+					flex-direction: column;
+					height: 100%;
+					align-content: center;
+					align-items: center;
+					align-self: center;
+					padding: 0;
+
+					.container {
+						width: 100%;
+
+						h1, h2, h3, h4, h5, h6, p {
+							text-align: center;
+						}
+
+						h1 {
+							width: 100%;
+							@include adaptive-value('font-size', 72, 30, 2);
+							@include adaptive-value('font-size', 30, 25, 1);
+							// font-size: 72px;
+							color: black;
+							font-family: 'BigNoodleTitling', Arial, sans-serif;
+							
+							letter-spacing: 10px;
+							word-spacing: 0px;
+						}
+
+						h6 {
+							margin-top: 15px;
+							@include adaptive-value('font-size', 36, 20, 2);
+							@include adaptive-value('font-size', 20, 15, 1);
+							// font-size: 36px;
+							font-family: 'BigNoodleTitling', Arial, sans-serif;
+							
+							letter-spacing: 5px;
+							word-spacing: 0px;
+						}
+					}
+					
+				}
+			}	
+		}
+
+		.slider__ctrl {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+
+			.slider__ctrl_to_slide {
+				padding-top: 7%;
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+
+				button {
+					height: 100%;
+					border: none;
+
+					&.left {
+						padding: 40px;
+					}
+					&.right {
+						padding: 40px;
+					}
+				}
+			}
+
+			.slider__slide_to_down {
+				position: absolute;
+				bottom: 5%;
+				width: 100%;
+
+				@keyframes animation-mouse {
+					
+
+
+					// Main Options
+					$delta-perc: 2%;
+					$delta-prog: 1;
+
+
+					$elem-x: -$delta-perc;
+					$elem-y: math.div($delta-perc, 2);
+
+					
+					@for $i from 0 through 25 {
+						@if ($i % $delta-prog == 0) {
+							$elem-x: $elem-x + $delta-perc;
+							$elem-y: $elem-y - math.div($delta-perc, 2);
+
+							#{$i}% {
+								transform: translate($elem-x, $elem-y);
+							}
+						}
+					}
+
+					@for $i from 25 through 50 {
+						@if ($i % $delta-prog == 0) {
+							$elem-x: $elem-x - $delta-perc;
+							$elem-y: $elem-y - math.div($delta-perc, 2);
+
+							#{$i}% {
+								transform: translate($elem-x, $elem-y);
+							}
+						}
+					}
+
+					@for $i from 50 through 75 {
+						@if ($i % $delta-prog == 0) {
+							$elem-x: $elem-x - $delta-perc;
+							$elem-y: $elem-y + math.div($delta-perc, 2);
+
+							#{$i}% {
+								transform: translate($elem-x, $elem-y);
+							}
+						}
+					}
+
+					@for $i from 75 through 100 {
+						@if ($i % $delta-prog == 0) {
+							$elem-x: $elem-x + $delta-perc;
+							$elem-y: $elem-y + math.div($delta-perc, 2);
+
+							#{$i}% {
+								transform: translate($elem-x, $elem-y);
+							}
+						}
+					}
+				}
+
+				a {
+					display: flex;
+					position: relative;
+					margin: 0 auto;
+					border-radius: 50%;
+
+					@include adaptive-value('height', 150, 75, 2);
+					@include adaptive-value('height', 75, 50, 1);	
+
+					@include adaptive-value('width', 150, 75, 2);
+					@include adaptive-value('width', 75, 50, 1);
+
+					padding: 15px;
+					flex-direction: column;
+					justify-content: space-around;
+					border: none;
+					
+
+					img {
+						display: block;
+						position: relative;
+
+						margin: 0 auto;
+										
+						@include adaptive-value('height', 74, 50, 2);
+						@include adaptive-value('height', 50, 37, 1);	
+
+						@include adaptive-value('width', 36, 25, 2);
+						@include adaptive-value('width', 25, 18, 1);
+
+						animation: animation-mouse 2s ease infinite;	
+
+					}
+					p {
+						text-align: center;
+						
+						@include adaptive-value('font-size', 15, 10, 2);
+						@include adaptive-value('font-size', 10, 5, 1);
+
+						font-family: 'Roboto', sans-serif;
+						font-weight: bold;
+						text-transform: uppercase;
+					}
+				}
+			}
+		}
+	}
+}
